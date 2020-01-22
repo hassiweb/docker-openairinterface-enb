@@ -1,0 +1,32 @@
+version: '2'
+
+networks:
+  s1_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.25.0/24
+          gateway: 192.168.25.1
+  x2_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.24.0/24
+          gateway: 192.168.24.1
+          
+services:
+  oaienb:
+    image: oai-lms
+    container_name: oaienb
+    hostname: enb
+    privileged: true
+    networks:
+      s1_network:
+        ipv4_address: 192.168.25.10
+      x2_network:
+        ipv4_address: 192.168.24.10
+    volumes:
+      - /dev/bus/usb
+      - ./config:/config
