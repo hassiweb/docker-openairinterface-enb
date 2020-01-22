@@ -1,9 +1,11 @@
 # docker-openairinterface-enb
 
-A Docker recipe of OpenAirInterface eNB for LimeSDR and [LimeSDR mini](https://limemicro.com/products/boards/limesdr-mini/)
+A Docker recipe of OpenAirInterface eNB for [LimeSDR](https://limemicro.com/products/boards/limesdr/) and [LimeSDR mini](https://limemicro.com/products/boards/limesdr-mini/)
 
 
-## Tested Environment
+
+
+## Testing Environment
 
 - Host machine
   - OS: Ubuntu 16.04 (Kernel version: 4.15.0-74-generic)
@@ -14,11 +16,6 @@ A Docker recipe of OpenAirInterface eNB for LimeSDR and [LimeSDR mini](https://l
   - docker-compose v1.24.1
 - SDR board
   - [LimeSDR mini](https://limemicro.com/products/boards/limesdr-mini/)
-
-
-## Target Software
-
-Tested version: [OpenAirInterface v1.0.3](https://gitlab.eurecom.fr/oai/openairinterface5g/tree/v1.0.3)
 
 
 ## Usage
@@ -35,7 +32,7 @@ docker build -t oai-lms .
 docker-compose run oaienb
 ```
 
-  All [`lte-softmodem` options](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md) are available when running the eNB container as follows.
+  All [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md) are available when running the eNB container as follows.
 
 ```
 docker-compose run oaienb -O /config/enb.band1.tm1.25PRB.lmssdr.conf --rf-config-file /root/trx-lms7002m/config-limeSDR/LimeSDR_Mini_above_1p8GHz.ini
