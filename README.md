@@ -24,20 +24,28 @@ Tested version: [OpenAirInterface v1.0.3](https://gitlab.eurecom.fr/oai/openairi
 ## Usage
 
 1. Create the image of OpenAirInterface eNB for LimeSDR, and take a coffee break.  It will take several tens of minutes.
-   docker build -t oai-lms .
 
+```
+docker build -t oai-lms .
+```
 
 2. Run the eNB container.
-   docker-compose run oaienb
 
-Any `[lte-softmodem](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md)` [options](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md) are available when running the eNB container as follows.
+```
+docker-compose run oaienb
+```
 
-    docker-compose run oaienb -O /config/enb.band1.tm1.25PRB.lmssdr.conf --rf-config-file /root/trx-lms7002m/config-limeSDR/LimeSDR_Mini_above_1p8GHz.ini
+  All [`lte-softmodem` options](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md) are available when running the eNB container as follows.
 
+```
+docker-compose run oaienb -O /config/enb.band1.tm1.25PRB.lmssdr.conf --rf-config-file /root/trx-lms7002m/config-limeSDR/LimeSDR_Mini_above_1p8GHz.ini
+```
 
 3. Modify iptables to forward GTP (UDP) packets from S-GW to the eNB container. 
-   sh forward_s1_to_enb.sh start
 
+```
+sh forward_s1_to_enb.sh start
+```
 
 ## Note
 
