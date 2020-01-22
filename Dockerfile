@@ -232,4 +232,5 @@ WORKDIR /root/
 RUN git clone https://github.com/myriadrf/trx-lms7002m
 
 # Run directly the eNodeB code
-ENTRYPOINT ["/root/openairinterface5g/cmake_targets/lte_build_oai/build/lte-softmodem", "-O", "/config/enb.band1.tm1.25PRB.lmssdr.conf", "--rf-config-file", "/root/trx-lms7002m/config-limeSDR/LimeSDR_Mini_above_1p8GHz.ini"]
+ENTRYPOINT ["/root/openairinterface5g/cmake_targets/lte_build_oai/build/lte-softmodem"]
+CMD ["-O", "/config/enb.band1.tm1.25PRB.lmssdr.conf", "--rf-config-file", "/root/trx-lms7002m/config-limeSDR/LimeSDR_Mini_above_1p8GHz.ini"]
