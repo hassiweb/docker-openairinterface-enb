@@ -1,7 +1,5 @@
 # docker-openairinterface-enb
 
-# docker-openairinterface-enb
-
 A Docker recipe of OpenAirInterface eNB for LimeSDR and [LimeSDR mini](https://limemicro.com/products/boards/limesdr-mini/)
 
 
