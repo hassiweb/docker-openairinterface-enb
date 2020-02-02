@@ -18,7 +18,7 @@ networks:
           
 services:
   oaienb:
-    image: oai-lms
+    image: hassiweb/oai-enb-lms:v1.0.3
     container_name: oaienb
     hostname: enb
     privileged: true
@@ -29,4 +29,7 @@ services:
         ipv4_address: 192.168.24.10
     volumes:
       - /dev/bus/usb
-      - ./config:/config
+      - ./config:/etc/openairinterface
+    entrypoint:
+      - "/bin/sh"
+      - "/etc/openairinterface/run_enb.sh"
