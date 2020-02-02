@@ -23,20 +23,19 @@ A Docker recipe of OpenAirInterface eNB for [LimeSDR](https://limemicro.com/prod
 1. Create the image of OpenAirInterface eNB for LimeSDR, and take a coffee break.  It will take several tens of minutes.
 
 ```
-docker build -t oai-lms .
+sh build.sh enb lmssdr
 ```
 
 2. Run the eNB container.
 
 ```
-docker-compose run oaienb
+docker-compose -f docker-compose.enb.lmssdr.yml up
 ```
 
-  All [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md) are available when running the eNB container as follows.
+  Change `config/run_enb.sh` if you want to use specific options or configuration files.
 
-```
-docker-compose run oaienb -O /config/enb.band1.tm1.25PRB.lmssdr.conf --rf-config-file /root/trx-lms7002m/config-limeSDR/LimeSDR_Mini_above_1p8GHz.ini
-```
+  Reference: [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md)
+
 
 3. Modify iptables to forward GTP (UDP) packets from S-GW to the eNB container. 
 
