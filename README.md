@@ -26,13 +26,19 @@ A Docker recipe of OpenAirInterface eNB for [LimeSDR](https://limemicro.com/prod
 sh build.sh enb lmssdr
 ```
 
-2. Run the eNB container.
+2. Run the eNB container, or multiple containers for [the RU-RCC split architecture using the NGFI interface](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/how-to-connect-cots-ue-to-oai-enb-via-ngfi-rru).
 
 ```
 docker-compose -f docker-compose.enb.lmssdr.yml up
 ```
 
-  Change `config/run_enb.sh` if you want to use specific options or configuration files.
+or 
+
+```
+docker-compose -f docker-compose.rcc-rru.if4p5.yml up
+```
+
+  Change `config/run_enb.sh`, `config/run_rcc_if4p5.sh`, and/or `config/run_rru_if4p5.sh` if you want to use specific options or configuration files.
 
   Reference: [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md)
 

@@ -1,0 +1,27 @@
+ARG OAI_VER
+FROM hassiweb/oai-base:${OAI_VER}
+MAINTAINER hassiweb <nryk.hashimoto@gmail.com>
+
+# Install LimeSuite v19.04.0 because some APIs for LimeSDR have changed in the latest packeages
+# See in detail: https://open-cells.com/index.php/2017/05/10/limesdr-installation/
+RUN git clone https://github.com/myriadrf/LimeSuite.git -b v19.04.0 \
+ && cd LimeSuite \
+ && mkdir builddir && cd builddir \
+ && cmake ../ \
+ && make -j4 \
+ && make install \
+ && ldconfig
+
+# Fetch configurations for LimeSDR
+RUN mkdir -p /etc/limemicro && cd /etc/limemicro \
+ && git clone https://github.com/myriadrf/trx-lms7002m
+
+# Build OAI RCC having the nFAPI interface
+RUN /openairinterface5g/cmake_targets/build_oai --eNB --transport_protocol ETHERNET --hardware LMSSDR --disable-T-Tracer
+
+# Add the built directory path
+ENV PATH $PATH:/openairinterface5g/cmake_targets/lte_build_oai_noLOG/build/
+
+# Run lte-softmodem with a sample configuration
+CMD ["lte-softmodem", "-O", "/config/rru.band1.if4p5.lmssdr.conf", "--rf-config-file", "/etc/limemicro/trx-lms7002m/config-limeSDR/LimeSDR_Mini_above_1p8GHz.ini"]
+

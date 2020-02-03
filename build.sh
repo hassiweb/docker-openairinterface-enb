@@ -2,18 +2,28 @@
 
 set -e
 
-NODE="${@:-usage}"
-HW=$2
+OAI_VER=v1.0.3
 
-usage () {
-  echo "Usage:"
+usage() {
+  echo "Usage: sh build.sh {enb lmssdr|rcc nfapi|rru nfapi lmssdr}"
 }
 
-enb () {
-  docker build -f Dockerfile.base -t hassiweb/oai-base:v1.0.3 .
-  if [ $HW = "lmssdr" ]; then
-    docker build -f Dockerfile.enb.lmssdr -t hassiweb/oai-enb-lms:v1.0.3 .
+main() {
+  if [ $1 = "enb" ]; then
+    docker build -f Dockerfile.base -t hassiweb/oai-base:$OAI_VER . --build-arg OAI_VER=$OAI_VER
+    docker build -f Dockerfile.enb.lmssdr -t hassiweb/oaienb-lms:$OAI_VER . --build-arg OAI_VER=$OAI_VER
+  elif [ $1 = "rcc" ]; then
+    docker build -f Dockerfile.base -t hassiweb/oai-base:$OAI_VER . --build-arg OAI_VER=$OAI_VER
+    docker build -f Dockerfile.rcc -t hassiweb/oaircc:$OAI_VER . --build-arg OAI_VER=$OAI_VER
+  elif [ $1 = "rru" ]; then
+    docker build -f Dockerfile.base -t hassiweb/oai-base:$OAI_VER . --build-arg OAI_VER=$OAI_VER
+    docker build -f Dockerfile.rru.lmssdr -t hassiweb/oairru-lms:$OAI_VER . --build-arg OAI_VER=$OAI_VER
+  elif [ $1 = "ue" -a $2 = "nfapi" ]; then
+    docker build -f Dockerfile.base -t hassiweb/oai-base:$OAI_VER . --build-arg OAI_VER=$OAI_VER
+    docker build -f Dockerfile.ue.nfapi -t hassiweb/oaiue-nfapi:$OAI_VER . --build-arg OAI_VER=$OAI_VER
+  else
+    usage
   fi
 }
 
-$NODE
+main "$@"

@@ -1,9 +1,11 @@
 FROM ubuntu:16.04
 MAINTAINER hassiweb <nryk.hashimoto@gmail.com>
 
+ARG OAI_VER
+
 RUN apt-get update \
  && apt-get install -yq sudo git wget
 
 # Install required packages
-RUN git clone https://gitlab.eurecom.fr/oai/openairinterface5g.git -b v1.0.3 
+RUN git clone https://gitlab.eurecom.fr/oai/openairinterface5g.git -b ${OAI_VER}
 RUN USER=root ./openairinterface5g/cmake_targets/build_oai --install-external-packages
