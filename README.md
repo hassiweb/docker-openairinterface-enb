@@ -33,7 +33,7 @@ A Docker recipe of OpenAirInterface eNB for [LimeSDR](https://limemicro.com/prod
 
 Change `config/run_enb.sh` if you want to use specific options or configuration files.
 
-Reference: [options of](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md) `[lte-softmodem](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md)`
+Reference: [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md)
 
 
 3. Modify iptables to forward GTP (UDP) packets from S-GW to the eNB container.
