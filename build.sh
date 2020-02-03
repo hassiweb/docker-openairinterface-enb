@@ -12,11 +12,9 @@ main() {
   if [ $1 = "enb" ]; then
     docker build -f Dockerfile.base -t hassiweb/oai-base:$OAI_VER . --build-arg OAI_VER=$OAI_VER
     docker build -f Dockerfile.enb.lmssdr -t hassiweb/oaienb-lms:$OAI_VER . --build-arg OAI_VER=$OAI_VER
-  elif [ $1 = "rcc" ]; then
+  elif [ $1 = "split" ]; then
     docker build -f Dockerfile.base -t hassiweb/oai-base:$OAI_VER . --build-arg OAI_VER=$OAI_VER
     docker build -f Dockerfile.rcc -t hassiweb/oaircc:$OAI_VER . --build-arg OAI_VER=$OAI_VER
-  elif [ $1 = "rru" ]; then
-    docker build -f Dockerfile.base -t hassiweb/oai-base:$OAI_VER . --build-arg OAI_VER=$OAI_VER
     docker build -f Dockerfile.rru.lmssdr -t hassiweb/oairru-lms:$OAI_VER . --build-arg OAI_VER=$OAI_VER
   elif [ $1 = "ue" -a $2 = "nfapi" ]; then
     docker build -f Dockerfile.base -t hassiweb/oai-base:$OAI_VER . --build-arg OAI_VER=$OAI_VER
