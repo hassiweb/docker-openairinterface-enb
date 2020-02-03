@@ -1,0 +1,59 @@
+version: '2'
+
+networks:
+  s1_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.25.0/24
+          gateway: 192.168.25.1
+  x2_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.24.0/24
+          gateway: 192.168.24.1
+  nfapi_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.23.0/24
+          gateway: 192.168.23.1
+          
+services:
+  oaircc:
+    image: hassiweb/oaircc:v1.0.3
+    container_name: oaircc
+    hostname: rcc
+    privileged: true
+    networks:
+      s1_network:
+        ipv4_address: 192.168.25.10
+      x2_network:
+        ipv4_address: 192.168.24.10
+      nfapi_network:
+        ipv4_address: 192.168.23.10
+    volumes:
+      - ./config:/etc/openairinterface
+    entrypoint:
+      - "/bin/sh"
+      - "/etc/openairinterface/run_rcc_if4p5.sh"
+
+
+  oairru:
+    image: hassiweb/oairru-lms:v1.0.3
+    container_name: oairru
+    hostname: rru
+    privileged: true
+    networks:
+      nfapi_network:
+        ipv4_address: 192.168.23.11
+    volumes:
+      - /dev/bus/usb
+      - ./config:/etc/openairinterface
+    entrypoint:
+      - "/bin/sh"
+      - "/etc/openairinterface/run_rru_if4p5.sh"

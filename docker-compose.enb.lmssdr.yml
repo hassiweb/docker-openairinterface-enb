@@ -18,7 +18,7 @@ networks:
           
 services:
   oaienb:
-    image: hassiweb/oai-enb-lms:v1.0.3
+    image: hassiweb/oaienb-lms:v1.0.3
     container_name: oaienb
     hostname: enb
     privileged: true
