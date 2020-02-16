@@ -19,10 +19,12 @@ RUN mkdir -p /etc/limemicro && cd /etc/limemicro \
  && git clone https://github.com/myriadrf/trx-lms7002m
 
 # Build OAI eNB for LimeSDR
-RUN /openairinterface5g/cmake_targets/build_oai --eNB --hardware LMSSDR --disable-T-Tracer
+RUN /openairinterface5g/cmake_targets/build_oai -c --eNB --hardware LMSSDR
+#RUN /openairinterface5g/cmake_targets/build_oai --eNB --hardware LMSSDR --disable-T-Tracer
 
 # Add the built directory path
-ENV PATH $PATH:/openairinterface5g/cmake_targets/lte_build_oai_noLOG/build/
+ENV PATH $PATH:/openairinterface5g/cmake_targets/lte_build_oai/build/
+#ENV PATH $PATH:/openairinterface5g/cmake_targets/lte_build_oai_noLOG/build/
 
 # Run lte-softmodem with a sample option for LimeSDR
 CMD ["lte-softmodem", "-O", "/config/enb.band1.tm1.25PRB.lmssdr.conf", "--rf-config-file", "/etc/limemicro/trx-lms7002m/config-limeSDR/LimeSDR_Mini_above_1p8GHz.ini"]
