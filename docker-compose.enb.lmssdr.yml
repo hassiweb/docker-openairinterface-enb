@@ -27,6 +27,9 @@ services:
         ipv4_address: 192.168.25.10
       x2_network:
         ipv4_address: 192.168.24.10
+    ports:
+       - "2152:2152"
+       - "2152:2152/udp"
     volumes:
       - /dev/bus/usb
       - ./config:/etc/openairinterface
