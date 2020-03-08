@@ -51,10 +51,6 @@ Reference: [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairint
 Change `config/run_rcc_if4p5.sh`, and/or `config/run_rru_if4p5.sh` if you want to use specific options or configuration files.
 
 
-3. Modify iptables to forward GTP (UDP) packets from S-GW to the eNB container.
-```
-   sh forward_s1_to_enb.sh start
-```
 
 ## Note
 
