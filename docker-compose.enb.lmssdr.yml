@@ -30,9 +30,11 @@ services:
     ports:
        - "2152:2152"
        - "2152:2152/udp"
+#       - "9090:9090" # telnet server
     volumes:
       - /dev/bus/usb
       - ./config:/etc/openairinterface
-    entrypoint:
+      - ./log:/var/log/openairinterface
+    command:
       - "/bin/sh"
       - "/etc/openairinterface/run_enb.sh"
