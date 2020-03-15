@@ -36,11 +36,6 @@ Change `config/run_enb.sh` if you want to use specific options or configuration 
 Reference: [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md)
 
 
-3. Modify iptables to forward GTP (UDP) packets from S-GW to the eNB container.
-```
-   sh forward_s1_to_enb.sh start
-```
-
 ### RCC-RRU split architecture
 
 1. Create the images for [the RCC-RRU split architecture using the NGFI interface](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/how-to-connect-cots-ue-to-oai-enb-via-ngfi-rru).
@@ -56,10 +51,6 @@ Reference: [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairint
 Change `config/run_rcc_if4p5.sh`, and/or `config/run_rru_if4p5.sh` if you want to use specific options or configuration files.
 
 
-3. Modify iptables to forward GTP (UDP) packets from S-GW to the eNB container.
-```
-   sh forward_s1_to_enb.sh start
-```
 
 ## Note
 
