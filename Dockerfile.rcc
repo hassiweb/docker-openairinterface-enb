@@ -3,10 +3,12 @@ FROM hassiweb/oai-base:${OAI_VER}
 MAINTAINER hassiweb <nryk.hashimoto@gmail.com>
 
 # Build OAI RCC having the nFAPI interface
-RUN /openairinterface5g/cmake_targets/build_oai --eNB --transport_protocol ETHERNET --disable-T-Tracer
+RUN /openairinterface5g/cmake_targets/build_oai --eNB --transport_protocol ETHERNET
+#RUN /openairinterface5g/cmake_targets/build_oai --eNB --transport_protocol ETHERNET --disable-T-Tracer
 
 # Add the built directory path
-ENV PATH $PATH:/openairinterface5g/cmake_targets/lte_build_oai_noLOG/build/
+ENV PATH $PATH:/openairinterface5g/cmake_targets/lte_build_oai/build/
+#ENV PATH $PATH:/openairinterface5g/cmake_targets/lte_build_oai_noLOG/build/
 
 # Run lte-softmodem with a sample configuration
 CMD ["lte-softmodem", "-O", "/config/rcc.band7.tm1.if4p5.conf"]
