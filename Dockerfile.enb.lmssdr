@@ -21,8 +21,12 @@ RUN mkdir -p /etc/limemicro && cd /etc/limemicro \
 # Build OAI eNB for LimeSDR
 RUN /openairinterface5g/cmake_targets/build_oai -c --eNB --hardware LMSSDR
 
-# (Option)  Build for telnet server (see in detail: https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/utils/telnetsrv/DOC/telnetsrv.md)
+# (Option) Build for telnet server (see in detail: https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/utils/telnetsrv/DOC/telnetsrv.md)
 RUN /openairinterface5g/cmake_targets/build_oai --build-telnetsrv
+
+# (Option) Build for T-tracer (see in detail: https://www.openairinterface.org/docs/workshop/1stOAINorthAmericaWorkshop/Training/KALTENBERGER-OAI_basics_June_2019.pdf)    
+RUN cd /openairinterface5g/common/utils/T/tracer \
+ && make all
 
 # Add the built directory path
 ENV PATH $PATH:/openairinterface5g/cmake_targets/lte_build_oai/build/
