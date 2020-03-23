@@ -2,9 +2,6 @@
 
 A Docker recipe of OpenAirInterface eNB for [LimeSDR](https://limemicro.com/products/boards/limesdr/) and [LimeSDR mini](https://limemicro.com/products/boards/limesdr-mini/)
 
-
-
-
 ## Testing Environment
 
 - Host machine
@@ -17,11 +14,10 @@ A Docker recipe of OpenAirInterface eNB for [LimeSDR](https://limemicro.com/prod
 - SDR board
   - [LimeSDR mini](https://limemicro.com/products/boards/limesdr-mini/)
 
-
 ## Usage
 ### Single Node eNB
 
-1. Create the image of OpenAirInterface eNB for LimeSDR, and take a coffee break. It will take several tens of minutes.
+1. Create a Docker image of OpenAirInterface eNB for LimeSDR, and take a coffee break. It will take several tens of minutes.
 ```
    sh build.sh enb
 ```
@@ -35,6 +31,17 @@ Change `config/run_enb.sh` if you want to use specific options or configuration 
 
 Reference: [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md)
 
+### Single Node eBN with T-Tracer GUI
+1. Create a Docker image (the Same as above).
+
+2. Run X11 server on the remote cliant machine or the local machine.
+
+3. If you want to show the T-Tracer GUI onto the remote cliant machine, modify host name (or IP address) of the environment variable `DISPLAY` in `docker-compose.enb.lmssdr.gui.yml`.
+
+4. Run the single eNB container with T-Tracer GUI.
+```
+  docker-compose -f docker-compose.enb.lmssdr.gui.yaml up
+```
 
 ### RCC-RRU split architecture
 
