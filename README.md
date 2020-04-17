@@ -31,7 +31,7 @@ Change `config/run_enb.sh` if you want to use specific options or configuration 
 
 Reference: [options of `lte-softmodem`](https://gitlab.eurecom.fr/oai/openairinterface5g/blob/v1.0.3/common/config/DOC/config/rtusage.md)
 
-### Single Node eBN with T-Tracer GUI
+### Single Node eNB with T-Tracer GUI
 1. Create a Docker image (the Same as above).
 
 2. Run X11 server on the remote cliant machine or the local machine.
